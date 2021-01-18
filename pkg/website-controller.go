@@ -18,7 +18,6 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		defer resp.Body.Close()
 
 		decoder := json.NewDecoder(resp.Body)
 		for {
@@ -37,6 +36,8 @@ func main() {
 				deleteWebsite(event.Object)
 			}
 		}
+
+		_ = resp.Body.Close()
 	}
 
 }
